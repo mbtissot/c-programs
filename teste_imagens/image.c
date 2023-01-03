@@ -8,10 +8,10 @@
 
 
 // Driver code
-#define WIDTH 512
-#define HEIGHT 512
+#define WIDTH 1536
+#define HEIGHT 1536
 
-#define NUM_SEEDS 8
+#define NUM_SEEDS 16
 
 
 struct Seed{
@@ -152,12 +152,15 @@ void writeArray(int array[][WIDTH][3]){
 }
 
 int main(){
+
 	struct Seed seeds[NUM_SEEDS];
-	int array[HEIGHT][WIDTH][3];
+
+	int static array[HEIGHT][WIDTH][3];
+
 	srand(time(0));
 
 	generateSeeds(seeds);
-	printSeeds(seeds);
+	// printSeeds(seeds);
 
 	int i, j, s;
 	for(s=0; s<NUM_SEEDS; s++){
@@ -166,11 +169,11 @@ int main(){
 		seeds[s].colors[2] = generateColor();
 	}
 
-	printSeeds(seeds);
+	// printSeeds(seeds);
 
 	calculateNeighbours(array, seeds);
 
-	renderSeeds(array, seeds, 5);
+	renderSeeds(array, seeds, 10);
 
 	writeHeader();
 
